@@ -37,11 +37,6 @@ services:
     ports:
     - '9410:9410'
     - '9411:9411'
-#    environment:
-#    - RABBIT_ADDRESSES=localhost
-#    - RABBIT_URI=amqp://admin:admin@localhost:15672
-#    - RABBIT_PASSWORD=admin
-#    - RABBIT_USER=admin
     networks:
     - que_net
     depends_on:
@@ -178,16 +173,3 @@ networks:
   que_net:
     driver: overlay
 
-#  elasticsearch:
-#    image: elasticsearch
-#    container_name: elasticsearch
-#    restart: always
-#      ports:
-#      - '9200:9200'
-#      - '9300:9300'
-#
-#  kibana:
-#    container_name: kibana
-#    image: kibana
-#    ports:
-#    - 5601:5601
