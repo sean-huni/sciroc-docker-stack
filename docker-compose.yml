@@ -3,21 +3,21 @@ version: '3.5'
 services:
   neo4j:
     image: s34n/neo4j-img
-    restart: always
     ports:
     - '7474:7474'
     - '7473:7473'
     - '7687:7687'
     environment:
-      - NEO4J_AUTH=neo4j/neo4spring_cloud
+    - NEO4J_AUTH=neo4j/neo4spring_cloud
     networks:
     - db_net
     deploy:
       replicas: 1
+      restart_policy:
+        condition: on-failure
 
   rabbitmq:
     image: s34n/rmq-img
-    restart: always
     ports:
     - '15671:15671'
     - '15672:15672'
@@ -30,55 +30,60 @@ services:
     - que_net
     deploy:
       replicas: 1
+      restart_policy:
+        condition: on-failure
 
   zipkin:
     image: s34n/zipkin-img
-    restart: always
     ports:
     - '9410:9410'
     - '9411:9411'
     networks:
     - que_net
+    environment:
+    - ZIPKIN_LOG_LEVEL=DEBUG
+    - RABBIT_URI=amqp://admin:admin@rabbitmq:5672
     depends_on:
     - rabbitmq
     deploy:
       replicas: 1
+      restart_policy:
+        condition: on-failure
 
   eureka:
-    container_name: s34n/eureka
     image: s34n/eureka-img
-    restart: always
     ports:
     - '8001:8001'
     networks:
     - service_net
     deploy:
-      replicas: 4
+      replicas: 1
+      restart_policy:
+        condition: on-failure
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
-      interval: 5s
-      timeout: 6s
+      interval: 60s
+      timeout: 10s
       retries: 3
 
   config:
-    container_name: s34n/config
     image: s34n/config-img
-    restart: always
     ports:
     - '8002:8002'
     networks:
     - service_net
-    deploy:
-      replicas: 4
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8002/health"]
-      interval: 5s
-      timeout: 6s
+      interval: 30s
+      timeout: 10s
       retries: 3
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
 
   leader-data:
     image: s34n/leader-data-img
-    restart: always
     ports:
     - '8003:8003'
     networks:
@@ -87,17 +92,18 @@ services:
     depends_on:
     - neo4j
     - config
-    deploy:
-      replicas: 4
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8003/health"]
-      interval: 5s
-      timeout: 6s
+      interval: 30s
+      timeout: 10s
       retries: 3
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
 
   leaderboard:
     image: s34n/leaderboard-img
-    restart: always
     ports:
     - '8004:8004'
     networks:
@@ -106,35 +112,35 @@ services:
     - leader-data
     - config
     deploy:
-      replicas: 4
+      replicas: 1
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8004/health"]
-      interval: 5s
-      timeout: 6s
+      interval: 30s
+      timeout: 10s
       retries: 3
 
   zuul:
     image: s34n/zuul-img
-    restart: always
     ports:
     - '8005:8005'
     networks:
     - service_net
+    - api_gateway_net
     depends_on:
     - leaderboard
-    - leader-data
     - game
     deploy:
-      replicas: 4
+      replicas: 1
+      restart_policy:
+        condition: on-failure
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8005/health"]
-      interval: 5s
-      timeout: 6s
+      interval: 30s
+      timeout: 10s
       retries: 3
 
   game:
     image: s34n/game-img
-    restart: always
     ports:
     - '8006:8006'
     networks:
@@ -142,29 +148,30 @@ services:
     depends_on:
     - config
     deploy:
-      replicas: 4
+      replicas: 1
+      restart_policy:
+        condition: on-failure
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8006/health"]
-      interval: 5s
-      timeout: 6s
+      interval: 30s
+      timeout: 10s
       retries: 3
 
   sciroc:
     image: s34n/sciroc-img
-    restart: always
     ports:
     - '80:8000'
     networks:
-    - service_net
+    - api_gateway_net
     depends_on:
     - config
     - zuul
     deploy:
-      replicas: 4
+      replicas: 2
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
-      interval: 5s
-      timeout: 6s
+      test: ["CMD", "curl", "-f", "http://localhost:80/health"]
+      interval: 30s
+      timeout: 10s
       retries: 3
 
 networks:
@@ -174,3 +181,6 @@ networks:
     driver: overlay
   service_net:
     driver: overlay
+  api_gateway_net:
+    driver: overlay
+
