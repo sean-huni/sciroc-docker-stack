@@ -4,13 +4,18 @@ This is a Spring-Cloud Portfolio of projects that are closely related together t
 
 ## Full-Stack
 
+![Architectural Diagram](https://raw.githubusercontent.com/sean-huni/sciroc-docker-stack/master/sciroc_architecture.png "Architecture")
+
 ### Cloud Servers/Swarm:
 1. [node-1 (178.128.248.16) - Manager](http://178.128.248.16)
 2. [node-2 (178.128.254.229) - Worker](http://178.128.254.229)
 3. [node-3 (178.128.241.236) - Worker](http://178.128.241.236)
 4. [node-4 (178.128.245.141) - Worker](http://178.128.245.141)
 
-[Click here to visualise the Swarm](http://178.128.248.16:9000/#/swarm/visualizer)
+![Virtual Machines (Nodes)](https://raw.githubusercontent.com/sean-huni/sciroc-docker-stack/master/vm-nodes.png "VM-Nodes")
+
+[Click here to visualise the Live Swarm](http://178.128.248.16:9000/#/swarm/visualizer)
+
 
 ### Dev-Stack
 - Docker-Stacks
