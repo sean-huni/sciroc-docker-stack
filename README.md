@@ -71,15 +71,15 @@ URL: 178.128.248.16:\<port>
     
 ### Repository Portfolio (Public):
 
-1.  [Config Repo](https://bitbucket.org/sean-huni/config)
-2.  [Config (Server)](https://bitbucket.org/sean-huni/config-server)
-3.  [Sciroc-Web (MVC)](https://bitbucket.org/sean-huni/sciroc)
-4.  [Eureka](https://bitbucket.org/sean-huni/eureka)
-5.  [Leader-Data](https://bitbucket.org/sean-huni/leader-data)
-6.  [Leaderboard](https://bitbucket.org/sean-huni/leaderboard)
-7.  [Zuul (API-Gateway)](https://bitbucket.org/sean-huni/zuul)
-8.  [Game](https://bitbucket.org/sean-huni/game)
-9.  [Turbine](https://bitbucket.org/sean-huni/turbine)
+1.  [Config Repo](https://github.com/sean-huni/config)
+2.  [Config (Server)](https://github.com/sean-huni/config-server)
+3.  [Sciroc-Web (MVC)](https://github.com/sean-huni/sciroc)
+4.  [Eureka](https://github.com/sean-huni/eureka)
+5.  [Leader-Data](https://github.com/sean-huni/leader-data)
+6.  [Leaderboard](https://github.com/sean-huni/leaderboard)
+7.  [Zuul (API-Gateway)](https://github.com/sean-huni/zuul)
+8.  [Game](https://github.com/sean-huni/game)
+9.  [Turbine](https://github.com/sean-huni/turbine)
 
 # Rock-Paper-Scissors Game - Docker Stack
 
