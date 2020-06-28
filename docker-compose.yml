@@ -62,7 +62,7 @@ services:
         condition: on-failure
 
   eureka:
-    image: s34n/eureka-img:1.0.1
+    image: s34n/eureka-img:1.0.2
     ports:
     - '8001:8001'
     networks:
@@ -80,7 +80,7 @@ services:
       retries: 3
 
   config:
-    image: s34n/config-img:1.0.1
+    image: s34n/config-img:1.0.2
     ports:
     - '8002:8002'
     networks:
@@ -102,7 +102,7 @@ services:
         condition: on-failure
 
   leader-data:
-    image: s34n/leader-data-img:1.0.1
+    image: s34n/leader-data-img:1.0.2
     ports:
     - '8003:8003'
     networks:
@@ -125,7 +125,7 @@ services:
         condition: on-failure
 
   leaderboard:
-    image: s34n/leaderboard-img:1.0.1
+    image: s34n/leaderboard-img:1.0.2
     ports:
     - '8004:8004'
     networks:
@@ -149,7 +149,7 @@ services:
         #      retries: 3
 
   zuul:
-    image: s34n/zuul-img:1.0.1
+    image: s34n/zuul-img:1.0.2
     ports:
     - '8005:8005'
     networks:
@@ -174,7 +174,7 @@ services:
       retries: 3
 
   game:
-    image: s34n/game-img:1.0.1
+    image: s34n/game-img:1.0.2
     ports:
     - '8006:8006'
     networks:
@@ -197,7 +197,7 @@ services:
       retries: 3
 
   turbine:
-    image: s34n/turbine-img:1.0.1
+    image: s34n/turbine-img:1.0.2
     ports:
     - '8007:8007'
     networks:
@@ -217,7 +217,7 @@ services:
 
 
   sciroc:
-    image: s34n/sciroc-img:1.0.1
+    image: s34n/sciroc-img:1.0.2
     ports:
     - '80:8000'
     networks:
