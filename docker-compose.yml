@@ -1,7 +1,5 @@
 version: '3.8'
 
-host: 198.13.51.15
-
 services:
   neo4j:
     image: s34n/neo4j-img
@@ -55,7 +53,7 @@ services:
     - service_net
     environment:
     - ZIPKIN_LOG_LEVEL=DEBUG
-    - RABBIT_URI=amqp://admin:admin@${host}:5672
+    - RABBIT_URI=amqp://admin:admin@198.13.51.15:5672
     depends_on:
     - rabbitmq
     deploy:
@@ -70,7 +68,7 @@ services:
     networks:
     - service_net
     environment:
-      EUREKA_INSTANCE_HOSTNAME: ${host}
+      EUREKA_INSTANCE_HOSTNAME: 198.13.51.15
     deploy:
       replicas: 1
       restart_policy:
@@ -88,9 +86,9 @@ services:
     networks:
     - service_net
     environment:
-      EUREKA_INSTANCE_HOSTNAME: ${host}
-      SPRING_RABBITMQ_HOST: ${host}
-      SPRING_ZIPKIN_BASE-URL: http://${host}:9411
+      EUREKA_INSTANCE_HOSTNAME: 198.13.51.15
+      SPRING_RABBITMQ_HOST: 198.13.51.15
+      SPRING_ZIPKIN_BASE-URL: http://198.13.51.15:9411
     depends_on:
     - eureka
     healthcheck:
@@ -110,10 +108,10 @@ services:
     networks:
     - service_net
     environment:
-      EUREKA_INSTANCE_HOSTNAME: ${host}
+      EUREKA_INSTANCE_HOSTNAME: 198.13.51.15
 #      SPRING_RABBITMQ_HOST: 10.133.33.126
 #      SPRING_ZIPKIN_BASE-URL: 'http://10.133.33.126:9411/'
-      SPRING_CLOUD_CONFIG_URI: http://${host}:8002/
+      SPRING_CLOUD_CONFIG_URI: http://198.13.51.15:8002/
     depends_on:
     - neo4j
     healthcheck:
@@ -133,10 +131,10 @@ services:
     networks:
     - service_net
     environment:
-      EUREKA_INSTANCE_HOSTNAME: ${host}
-      SPRING_RABBITMQ_HOST: ${host}
-      SPRING_ZIPKIN_BASE-URL: http://${host}:9411/
-      SPRING_CLOUD_CONFIG_URI: http://${host}:8002/
+      EUREKA_INSTANCE_HOSTNAME: 198.13.51.15
+      SPRING_RABBITMQ_HOST: 198.13.51.15
+      SPRING_ZIPKIN_BASE-URL: http://198.13.51.15:9411/
+      SPRING_CLOUD_CONFIG_URI: http://198.13.51.15:8002/
     depends_on:
     - leader-data
     - config
@@ -158,10 +156,10 @@ services:
     - service_net
     - api_gateway_net
     environment:
-      EUREKA_INSTANCE_HOSTNAME: ${host}
-      SPRING_RABBITMQ_HOST: ${host}
-      SPRING_ZIPKIN_BASE-URL: http://${host}:9411/
-      SPRING_CLOUD_CONFIG_URI: http://${host}:8002/
+      EUREKA_INSTANCE_HOSTNAME: 198.13.51.15
+      SPRING_RABBITMQ_HOST: 198.13.51.15
+      SPRING_ZIPKIN_BASE-URL: http://198.13.51.15:9411/
+      SPRING_CLOUD_CONFIG_URI: http://198.13.51.15:8002/
     depends_on:
     - leaderboard
     - game
@@ -182,10 +180,10 @@ services:
     networks:
     - service_net
     environment:
-      EUREKA_INSTANCE_HOSTNAME: ${host}
-      SPRING_RABBITMQ_HOST: ${host}
-      SPRING_ZIPKIN_BASE-URL: http://${host}:9411/
-      SPRING_CLOUD_CONFIG_URI: http://${host}:8002/
+      EUREKA_INSTANCE_HOSTNAME: 198.13.51.15
+      SPRING_RABBITMQ_HOST: 198.13.51.15
+      SPRING_ZIPKIN_BASE-URL: http://198.13.51.15:9411/
+      SPRING_CLOUD_CONFIG_URI: http://198.13.51.15:8002/
     depends_on:
     - config
     deploy:
