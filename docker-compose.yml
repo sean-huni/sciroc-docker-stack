@@ -80,7 +80,7 @@ services:
       retries: 3
 
   config:
-    image: s34n/config-img:1.0.2
+    image: s34n/config-img:1.0.3
     ports:
     - '8002:8002'
     networks:
