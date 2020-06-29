@@ -100,5 +100,7 @@ To deploy the docker stack run the following command:
   **`docker service logs rps_leaderboard --tail 10 -f`**
   
   **`docker service scale rps_game=2`**
+  
+  **`docker stack rm rps`**
 
 **Note: links to the bitbucket repo have been be listed Above**
