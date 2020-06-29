@@ -62,7 +62,7 @@ services:
         condition: on-failure
 
   eureka:
-    image: s34n/eureka-img:1.0.3
+    image: s34n/eureka-img:1.0.4
     ports:
     - '8001:8001'
     networks:
@@ -216,7 +216,7 @@ services:
 
 
   sciroc:
-    image: s34n/sciroc-img:1.0.2
+    image: s34n/sciroc-img:1.0.3
     ports:
     - '80:8000'
     networks:
