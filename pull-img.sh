@@ -1,4 +1,4 @@
-docker pull s34n/config-img:1.0.2 &&
+docker pull s34n/config-img:1.0.3 &&
   docker pull s34n/eureka-img:1.0.4 &&
   docker pull s34n/game-img:1.0.2 &&
   docker pull s34n/leader-data-img:1.0.4 &&
