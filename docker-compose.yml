@@ -109,8 +109,8 @@ services:
     - service_net
     environment:
       EUREKA_INSTANCE_HOSTNAME: 198.13.51.15
-#      SPRING_RABBITMQ_HOST: 10.133.33.126
-#      SPRING_ZIPKIN_BASE-URL: 'http://10.133.33.126:9411/'
+      #      SPRING_RABBITMQ_HOST: 198.13.51.15
+      #      SPRING_ZIPKIN_BASE-URL: 'http://198.13.51.15:9411/'
       SPRING_CLOUD_CONFIG_URI: http://198.13.51.15:8002/
     depends_on:
     - neo4j
